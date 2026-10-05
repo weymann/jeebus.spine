@@ -136,6 +136,8 @@ public class HeartbeatDataFunction extends FeatureFunction {
             }
         }
         catch (InterruptedException ie) {
+            // (Re-)Cancel if current thread also interrupted
+            executorService.shutdownNow();
             // Preserve interrupt status
             Thread.currentThread().interrupt();
         }
